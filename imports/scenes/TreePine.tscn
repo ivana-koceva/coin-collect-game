@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://boh4288fr7ko0"]
+
+[ext_resource type="PackedScene" uid="uid://b4633k7us7uk0" path="res://imports/glbs/tree-pine.glb" id="1_fviif"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vfuvj"]
+height = 1.70002
+
+[node name="TreePine" instance=ExtResource("1_fviif")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tree-pine" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tree-pine/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86162, 0)
+shape = SubResource("CylinderShape3D_vfuvj")

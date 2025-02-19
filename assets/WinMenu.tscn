@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc4t6xsn4ju0q"]
+
+[ext_resource type="Script" path="res://scripts/play_button.gd" id="1_fc57i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nq482"]
+font_size = 90
+
+[sub_resource type="SystemFont" id="SystemFont_qnwl3"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 147.0
+offset_right = 1282.0
+offset_bottom = 354.0
+text = "Победивте!"
+label_settings = SubResource("LabelSettings_nq482")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -999
+layout_mode = 0
+offset_right = 1277.0
+offset_bottom = 720.0
+color = Color(0.164706, 0.513726, 0.384314, 1)
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 395.0
+offset_right = 829.0
+offset_bottom = 479.0
+theme_override_fonts/font = SubResource("SystemFont_qnwl3")
+theme_override_font_sizes/font_size = 30
+text = "Играј Повторно?"
+script = ExtResource("1_fc57i")
+
+[connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_pressed"]

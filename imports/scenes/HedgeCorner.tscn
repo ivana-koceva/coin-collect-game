@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2s4ymyydc822"]
+
+[ext_resource type="PackedScene" uid="uid://chv8evndrqc4v" path="res://imports/glbs/hedge-corner.glb" id="1_grmxc"]
+
+[node name="hedge-corner2" instance=ExtResource("1_grmxc")]

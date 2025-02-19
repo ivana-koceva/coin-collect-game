@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://m5wdf2ga6q4e"]
+
+[ext_resource type="PackedScene" uid="uid://digkw0tqugs0d" path="res://imports/scenes/Chest.tscn" id="1_6j7jp"]
+[ext_resource type="Script" path="res://scripts/chest.gd" id="1_cevh4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wyvdt"]
+size = Vector3(0.616837, 0.579742, 0.631521)
+
+[node name="Area3D" type="Area3D"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+script = ExtResource("1_cevh4")
+
+[node name="chest" parent="." instance=ExtResource("1_6j7jp")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00276923, 0.230213, 0.0120646)
+shape = SubResource("BoxShape3D_wyvdt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bld4pdrgvcsn"]
+
+[ext_resource type="PackedScene" uid="uid://lvd1kgly4yqu" path="res://imports/scenes/Charlie.tscn" id="1_oyj5u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kc6bm"]
+size = Vector3(0.704559, 0.745117, 0.319336)
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_jg5ws"]
+
+[node name="Character" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0193354, 0.127441, 0.010498)
+shape = SubResource("BoxShape3D_kc6bm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaceholderMesh_jg5ws")
+
+[node name="Charlie" parent="." instance=ExtResource("1_oyj5u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.268535, 0)

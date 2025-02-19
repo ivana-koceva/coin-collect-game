@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://lvd1kgly4yqu"]
+
+[ext_resource type="PackedScene" uid="uid://cee4aac6pk8ar" path="res://imports/glbs/Charlie.glb" id="1_7r1vb"]
+
+[node name="character-female-b2" instance=ExtResource("1_7r1vb")]

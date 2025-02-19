@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d25om4l620efj"]
+
+[ext_resource type="PackedScene" uid="uid://bvley2ljoo3xt" path="res://imports/glbs/plant.glb" id="1_866cm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1n3v7"]
+
+[node name="plant2" instance=ExtResource("1_866cm")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="plant" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="plant/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_1n3v7")
+disabled = true

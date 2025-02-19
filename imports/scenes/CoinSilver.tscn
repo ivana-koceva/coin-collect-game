@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo5c4m0ammxas"]
+
+[ext_resource type="PackedScene" uid="uid://cfc3penhgknup" path="res://imports/glbs/coin-silver.glb" id="1_ly3bg"]
+
+[node name="coin-silver2" instance=ExtResource("1_ly3bg")]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://tyslfy6l5tpk"]
+
+[ext_resource type="PackedScene" uid="uid://dfg1c53ffn5la" path="res://imports/glbs/platform-overhang.glb" id="1_es3lt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cxmer"]
+size = Vector3(0.979004, 0.294647, 0.496948)
+
+[node name="platform-overhang2" instance=ExtResource("1_es3lt")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="platform-overhang" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="platform-overhang/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010498, 0.352676, -0.253113)
+shape = SubResource("BoxShape3D_cxmer")

@@ -1,0 +1,225 @@
+[gd_scene load_steps=29 format=3 uid="uid://bjvl0jcb6i8v3"]
+
+[ext_resource type="PackedScene" uid="uid://bld4pdrgvcsn" path="res://assets/Character.tscn" id="1_eo62u"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="2_4xjwl"]
+[ext_resource type="Script" path="res://scripts/camera_3d.gd" id="3_3mnk4"]
+[ext_resource type="Texture2D" uid="uid://cewqt2d6t8vi1" path="res://sprites/hud_coin.png" id="5_gb2m7"]
+[ext_resource type="Script" path="res://scripts/counter.gd" id="6_44n08"]
+[ext_resource type="Script" path="res://scripts/time.gd" id="7_tyq1v"]
+[ext_resource type="Texture2D" uid="uid://devhm4yvjjsur" path="res://sprites/timer.png" id="8_ofh4u"]
+[ext_resource type="PackedScene" uid="uid://c80gekobuty5u" path="res://assets/CoinSilver.tscn" id="9_0kwgw"]
+[ext_resource type="PackedScene" uid="uid://b63gp5vuto7j0" path="res://assets/CoinGolden.tscn" id="10_cdggr"]
+[ext_resource type="PackedScene" uid="uid://m5wdf2ga6q4e" path="res://assets/Chest.tscn" id="10_vdptn"]
+[ext_resource type="MeshLibrary" uid="uid://ci5126hmxlqmy" path="res://assets/meshes/HedgeLibrary.tres" id="11_a5put"]
+[ext_resource type="MeshLibrary" uid="uid://djw372hgsx805" path="res://assets/meshes/PineLibrary.tres" id="12_ldc62"]
+[ext_resource type="MeshLibrary" uid="uid://cptnqn7cwj8id" path="res://assets/meshes/PlantLibrary.tres" id="14_sj6gd"]
+[ext_resource type="MeshLibrary" uid="uid://dc1lmitna7rrb" path="res://assets/meshes/TreeLibrary.tres" id="15_p6lp0"]
+[ext_resource type="MeshLibrary" uid="uid://chb3nvqumyy3e" path="res://assets/meshes/FlowersLibrary.tres" id="15_tp5wh"]
+[ext_resource type="MeshLibrary" uid="uid://4mh4jrvclce6" path="res://assets/meshes/BenchLibrary.tres" id="16_0iyp3"]
+[ext_resource type="Texture2D" uid="uid://47kuds0r2tu1" path="res://sunflowers_puresky_4k.hdr" id="17_qdh7a"]
+
+[sub_resource type="SystemFont" id="SystemFont_e4nfr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1b32e"]
+font = SubResource("SystemFont_e4nfr")
+font_size = 30
+font_color = Color(0.839216, 0.698039, 0.117647, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_usg6t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bn8t0"]
+font = SubResource("SystemFont_usg6t")
+font_size = 50
+font_color = Color(0.839216, 0.698039, 0.117647, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yfv1h"]
+font_size = 50
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uj2ny"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w03yj"]
+albedo_color = Color(0.164706, 0.513726, 0.384314, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nfw8k"]
+material = SubResource("StandardMaterial3D_w03yj")
+size = Vector3(30, 1, 30)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1utko"]
+panorama = ExtResource("17_qdh7a")
+
+[sub_resource type="Sky" id="Sky_p7iqu"]
+sky_material = SubResource("PanoramaSkyMaterial_1utko")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_n8502"]
+background_mode = 2
+background_color = Color(0.728822, 0.728822, 0.728822, 1)
+sky = SubResource("Sky_p7iqu")
+ambient_light_source = 2
+ambient_light_color = Color(0.275647, 0.401816, 0.580518, 0.486275)
+
+[node name="Level" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(1100, 57)
+scale = Vector2(0.206, 0.206)
+texture = ExtResource("5_gb2m7")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1164.0
+offset_right = 1184.0
+offset_bottom = 106.0
+text = "x"
+label_settings = SubResource("LabelSettings_1b32e")
+vertical_alignment = 1
+
+[node name="Counter" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1193.0
+offset_right = 1279.0
+offset_bottom = 109.0
+text = "Q"
+label_settings = SubResource("LabelSettings_bn8t0")
+vertical_alignment = 1
+script = ExtResource("6_44n08")
+
+[node name="Timer" type="Timer" parent="Control/Counter"]
+wait_time = 0.5
+
+[node name="Time" type="Label" parent="Control" node_paths=PackedStringArray("timer")]
+layout_mode = 0
+offset_left = 1167.0
+offset_top = 151.0
+offset_right = 1278.0
+offset_bottom = 226.0
+text = "60"
+label_settings = SubResource("LabelSettings_yfv1h")
+script = ExtResource("7_tyq1v")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="Control/Time"]
+wait_time = 60.0
+autostart = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Control"]
+position = Vector2(1100, 189)
+scale = Vector2(0.06475, 0.06475)
+texture = ExtResource("8_ofh4u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.39772, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00610352, 0.00384521, 0)
+shape = SubResource("BoxShape3D_uj2ny")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0485191, 0, -0.0127745)
+mesh = SubResource("BoxMesh_nfw8k")
+
+[node name="Character" parent="." instance=ExtResource("1_eo62u")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.41796, 1.50814, -5.05929)
+script = ExtResource("2_4xjwl")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.964557, -0.263873, 0, 0.263873, 0.964557, 1.40702, 11.0122, 4.86993)
+environment = SubResource("Environment_n8502")
+script = ExtResource("3_3mnk4")
+target = NodePath("../Character")
+offset = Vector3(0, 5, -5)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.48821, 0.872726, 0, -0.872726, 0.48821, 0.0322762, 4.51588, 1.18665)
+shadow_enabled = true
+
+[node name="CoinSilver" parent="." instance=ExtResource("9_0kwgw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.495953, 2.3971, 4.83708)
+
+[node name="CoinSilver2" parent="." instance=ExtResource("9_0kwgw")]
+transform = Transform3D(0.603194, 0, -0.797594, 0, 1, 0, 0.797594, 0, 0.603194, -22.2861, 2.904, -5.75797)
+
+[node name="CoinSilver3" parent="." instance=ExtResource("9_0kwgw")]
+transform = Transform3D(-0.272314, 0, -0.962209, 0, 1, 0, 0.962209, 0, -0.272314, 19.8346, 1.69414, -10.2855)
+
+[node name="Chest" parent="." instance=ExtResource("10_vdptn")]
+transform = Transform3D(-2.49908, 0, -0.0678412, 0, 2.5, 0, 0.0678412, 0, -2.49908, -14.9428, 1.21891, -12.6865)
+
+[node name="Chest2" parent="." instance=ExtResource("10_vdptn")]
+transform = Transform3D(-2.49908, 0, -0.0678412, 0, 2.5, 0, 0.0678412, 0, -2.49908, 1.07346, 1.17383, 22.1695)
+
+[node name="Chest3" parent="." instance=ExtResource("10_vdptn")]
+transform = Transform3D(-2.49908, 0, -0.0678412, 0, 2.5, 0, 0.0678412, 0, -2.49908, 22.4589, 1.21704, -25.6404)
+
+[node name="CoinGolden" parent="." instance=ExtResource("10_cdggr")]
+transform = Transform3D(0.450302, 0, 0.661232, 0, 0.8, 0, -0.661232, 0, 0.450302, 0.600377, 3.41582, -16.8906)
+
+[node name="CoinGolden2" parent="." instance=ExtResource("10_cdggr")]
+transform = Transform3D(0.671847, 0, -0.434305, 0, 0.8, 0, 0.434305, 0, 0.671847, 20.4389, 2.52189, 15.2359)
+
+[node name="CoinGolden3" parent="." instance=ExtResource("10_cdggr")]
+transform = Transform3D(0.150221, 0, 0.785769, 0, 0.8, 0, -0.785769, 0, 0.150221, -17.7708, 2.56151, 13.9474)
+
+[node name="CoinGolden4" parent="." instance=ExtResource("10_cdggr")]
+transform = Transform3D(-0.221033, 0, 0.768859, 0, 0.8, 0, -0.768859, 0, -0.221033, 16.0684, 2.32086, 1.02296)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("11_a5put")
+cell_scale = 4.0
+data = {
+"cells": PackedInt32Array(14, 65520, 0, 12, 65520, 0, 10, 65520, 0, 8, 65520, 0, 6, 65520, 0, 4, 65520, 0, 2, 65520, 0, 0, 65520, 0, 65534, 65520, 0, 65532, 65520, 0, 65530, 65520, 0, 65528, 65520, 0, 65526, 65520, 0, 65524, 65520, 0, 65522, 65520, 0, 14, 14, 0, 12, 14, 0, 10, 14, 0, 8, 14, 0, 6, 14, 0, 4, 14, 0, 2, 14, 0, 0, 14, 0, 65534, 14, 0, 65532, 14, 0, 65530, 14, 0, 65528, 14, 0, 65526, 14, 0, 65524, 14, 0, 65522, 14, 1441792, 16, 65522, 1441792, 16, 65524, 1441792, 16, 65526, 1441792, 16, 65528, 1441792, 16, 65530, 1441792, 16, 65532, 1441792, 16, 65534, 1441792, 16, 0, 1441792, 16, 2, 1441792, 16, 4, 1441792, 16, 6, 1441792, 16, 8, 1441792, 16, 10, 1441792, 16, 12, 1441792, 16, 14, 1441792, 65522, 65522, 1441792, 65522, 4, 1441792, 65522, 65532, 1441792, 65522, 65530, 1441792, 65522, 65524, 1441792, 65522, 65526, 1441792, 65522, 65528, 1441792, 65522, 65534, 1441792, 65522, 0, 1441792, 65522, 2, 1441792, 65522, 10, 1441792, 65522, 12, 1441792, 65522, 8, 1441792, 65522, 6, 1441792, 65527, 65525, 1441792, 65527, 65527, 1441792, 65527, 65529, 1441792, 65527, 65531, 655360, 65529, 65531, 655360, 65529, 65529, 1048576, 65529, 65527, 1048576, 65527, 65523, 0, 65529, 65523, 0, 65531, 65523, 0, 65533, 65523, 0, 65533, 65525, 1441792, 65533, 65527, 1441792, 65533, 65529, 1441792, 65531, 65531, 655360, 65535, 65523, 0, 65535, 65525, 0, 1, 65525, 0, 1, 65523, 0, 65533, 65531, 655360, 65535, 65531, 655360, 1, 65531, 655360, 65535, 65529, 655360, 1, 65529, 655360, 3, 65531, 655360, 3, 65529, 1048576, 3, 65523, 0, 3, 65525, 1048576, 12, 10, 1048576, 12, 11, 0, 10, 11, 0, 8, 11, 0, 12, 8, 1048576, 12, 6, 1048576, 12, 4, 1048576, 12, 2, 0, 10, 2, 0, 8, 2, 0, 10, 9, 1048576, 10, 5, 1048576, 8, 9, 1048576, 8, 5, 1048576, 6, 11, 0, 6, 2, 0, 7, 9, 1441792, 7, 5, 1441792, 65523, 15, 1441792)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="GridMap2" type="GridMap" parent="."]
+mesh_library = ExtResource("12_ldc62")
+cell_scale = 3.0
+data = {
+"cells": PackedInt32Array(65523, 13, 1441792, 65533, 0, 1441792, 11, 65524, 1441792, 11, 65534, 1441792, 65523, 65523, 1441792, 14, 13, 1441792, 4, 3, 1441792, 4, 12, 1441792, 65530, 8, 1441792, 65526, 2, 1441792)
+}
+
+[node name="GridMap3" type="GridMap" parent="."]
+mesh_library = ExtResource("14_sj6gd")
+cell_scale = 2.0
+data = {
+"cells": PackedInt32Array(65526, 11, 1441792, 65532, 7, 1441792, 2, 12, 1441792, 13, 13, 1441792, 14, 12, 1441792, 14, 11, 1441792, 65525, 2, 1441792, 65523, 6, 1441792, 65527, 65533, 1441792, 65523, 65527, 1441792, 65525, 65524, 1441792, 6, 65523, 1441792, 10, 65527, 1441792, 14, 65523, 1441792, 13, 65530, 1441792, 13, 65535, 1441792, 9, 1, 1441792, 8, 10, 1441792, 65531, 10, 1441792, 65534, 3, 1441792, 8, 65532, 1441792, 3, 6, 1441792, 2, 65522, 1441792, 65529, 65522, 1441792, 65527, 0, 1441792)
+}
+
+[node name="GridMap4" type="GridMap" parent="."]
+mesh_library = ExtResource("15_tp5wh")
+cell_scale = 2.0
+data = {
+"cells": PackedInt32Array(2, 9, 1441793, 65528, 9, 1441793, 65528, 13, 1441793, 65524, 9, 1441793, 0, 13, 1441793, 65535, 10, 1441793, 65529, 2, 1441793, 6, 7, 1441793, 12, 5, 1441793, 12, 10, 1441793, 9, 13, 1441793, 5, 13, 1441793, 8, 65534, 1441793, 8, 65528, 1441793, 6, 65526, 1441793, 9, 65523, 1441793, 11, 65529, 1441793, 14, 65525, 1441793, 14, 65532, 1441793, 14, 1, 1441793, 5, 4, 1441793, 65524, 65535, 1441793, 65524, 4, 1441793, 65529, 65535, 1441793, 65523, 65529, 1441793, 65525, 65527, 1441793, 3, 65534, 1441793, 65535, 65532, 1441793, 65528, 65525, 1441793, 65531, 65528, 1441793, 65532, 4, 1441793, 65534, 65522, 1441792, 65535, 7, 1441792)
+}
+
+[node name="GridMap5" type="GridMap" parent="."]
+mesh_library = ExtResource("15_p6lp0")
+
+[node name="GridMap6" type="GridMap" parent="."]
+mesh_library = ExtResource("16_0iyp3")
+cell_scale = 2.0
+data = {
+"cells": PackedInt32Array(65533, 65527, 1048576, 11, 65525, 0, 65531, 65533, 655360, 65526, 0, 655360, 65527, 65527, 1048576, 11, 65533, 0, 10, 2, 0, 9, 13, 0, 14, 65528, 1441792, 14, 65530, 1441792, 65530, 6, 655360, 65523, 11, 655360)
+}
+
+[connection signal="timeout" from="Control/Time/Timer" to="Control/Time" method="_on_timer_timeout"]
+[connection signal="body_entered" from="CoinSilver" to="Control/Counter" method="_on_coin_silver_body_entered"]
+[connection signal="body_entered" from="CoinSilver2" to="Control/Counter" method="_on_coin_silver_body_entered"]
+[connection signal="body_entered" from="CoinSilver3" to="Control/Counter" method="_on_coin_silver_body_entered"]
+[connection signal="body_entered" from="Chest" to="Control/Counter" method="_on_chest_body_entered"]
+[connection signal="body_entered" from="Chest" to="Chest" method="_on_body_entered"]
+[connection signal="body_entered" from="Chest2" to="Control/Counter" method="_on_chest_body_entered"]
+[connection signal="body_entered" from="Chest2" to="Chest2" method="_on_body_entered"]
+[connection signal="body_entered" from="Chest3" to="Control/Counter" method="_on_chest_body_entered"]
+[connection signal="body_entered" from="Chest3" to="Chest3" method="_on_body_entered"]
+[connection signal="body_entered" from="CoinGolden" to="Control/Counter" method="_on_coin_golden_body_entered"]
+[connection signal="body_entered" from="CoinGolden2" to="Control/Counter" method="_on_coin_golden_body_entered"]
+[connection signal="body_entered" from="CoinGolden3" to="Control/Counter" method="_on_coin_golden_body_entered"]
+[connection signal="body_entered" from="CoinGolden4" to="Control/Counter" method="_on_coin_golden_body_entered"]

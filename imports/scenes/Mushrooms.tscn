@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq50dx1p84auf"]
+
+[ext_resource type="PackedScene" uid="uid://edsowmlkml" path="res://imports/glbs/mushrooms.glb" id="1_jhpym"]
+
+[node name="mushrooms2" instance=ExtResource("1_jhpym")]

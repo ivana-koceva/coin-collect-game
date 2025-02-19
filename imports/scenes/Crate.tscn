@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://byauja6adt41w"]
+
+[ext_resource type="PackedScene" uid="uid://bsmbsstxd40eu" path="res://imports/glbs/crate-item.glb" id="1_llxid"]
+
+[node name="crate-item2" instance=ExtResource("1_llxid")]

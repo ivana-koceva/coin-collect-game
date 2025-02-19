@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bup54aelqyimy"]
+
+[ext_resource type="PackedScene" uid="uid://u31ejhqspf8t" path="res://imports/glbs/hedge.glb" id="1_3um6n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a0oh6"]
+size = Vector3(1, 0.4552, 0.315552)
+
+[node name="hedge2" instance=ExtResource("1_3um6n")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hedge" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hedge/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.194433, 0.342224)
+shape = SubResource("BoxShape3D_a0oh6")
